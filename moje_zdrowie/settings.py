@@ -51,10 +51,7 @@ TENANT_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    
-    
-    # 'tenants',
-    # 'crypto',
+    'accounts',
 ]
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
@@ -70,7 +67,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'moje_zdrowie.urls'
+ROOT_URLCONF = 'moje_zdrowie.urls_public'
 
 TEMPLATES = [
     {
@@ -101,9 +98,7 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST', default='localhost'),
         'PORT': config('DB_PORT', default='5432'),
-        'OPTIONS': {
-            'options': '-c search_path=public,tenant_schema,shared_schema'
-        }
+       
     }
 }
 
@@ -157,3 +152,30 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/login/'
+
+# Session settings
+SESSION_COOKIE_AGE = 86400  # 24 hours
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {'class':'logging.StreamHandler'},
+    },
+    'loggers': {
+        'django_tenants.middleware': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django_tenants': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}

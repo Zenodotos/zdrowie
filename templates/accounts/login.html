@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Logowanie - Health Prevention System{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <div class="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-primary-100">
+                <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+            </div>
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                Zaloguj się do systemu
+            </h2>
+            {% if tenant %}
+                <p class="mt-2 text-sm text-gray-600">
+                    <span class="font-medium text-primary-600">{{ tenant.name }}</span>
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Login Form -->
+        <div class="bg-white py-8 px-6 shadow-lg rounded-lg border border-gray-200">
+            <form class="space-y-6" method="post">
+                {% csrf_token %}
+                
+                {% if next %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+                
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                        <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Nazwa użytkownika
+                    </label>
+                    <input type="text" 
+                           id="username" 
+                           name="username" 
+                           class="input-field" 
+                           placeholder="Wprowadź nazwę użytkownika"
+                           required 
+                           autofocus>
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                        Hasło
+                    </label>
+                    <input type="password" 
+                           id="password" 
+                           name="password" 
+                           class="input-field" 
+                           placeholder="Wprowadź hasło"
+                           required>
+                </div>
+                
+                <div>
+                    <button type="submit" class="w-full btn-primary py-3 text-base">
+                        <svg class="inline w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        Zaloguj się
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Help text -->
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-500">
+                    Nie masz konta? 
+                    <a href="/admin/" class="font-medium text-primary-600 hover:text-primary-500">
+                        Panel administratora
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

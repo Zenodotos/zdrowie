@@ -1,0 +1,288 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dashboard - Health Prevention System{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="flex-1 min-w-0">
+                <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    👋 Witaj, {{ user.get_full_name|default:user.username }}!
+                </h1>
+                <p class="mt-1 text-sm text-gray-500">
+                    Jesteś zalogowany w systemie profilaktyki zdrowia
+                    {% if tenant %}• {{ tenant.name }}{% endif %}
+                </p>
+            </div>
+            <div class="mt-4 flex md:mt-0 md:ml-4">
+                <a href="/admin/" class="btn-secondary">
+                    <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Panel Admin
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+        <!-- Card 1 -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.916-.75l.916.75zM9 20H4v-2a3 3 0 015.916-.75L9 20zm-4.586-9.414a2 2 0 010-2.828L8.828 3.36a2 2 0 012.828 0l4.414 4.414a2 2 0 010 2.828L11.656 15a2 2 0 01-2.828 0L4.414 10.586z"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                Pacjenci
+                            </dt>
+                            <dd class="text-lg font-medium text-gray-900">
+                                0
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                Wizyty
+                            </dt>
+                            <dd class="text-lg font-medium text-gray-900">
+                                0
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                Badania
+                            </dt>
+                            <dd class="text-lg font-medium text-gray-900">
+                                0
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.18 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                Alerty
+                            </dt>
+                            <dd class="text-lg font-medium text-gray-900">
+                                0
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- User Info -->
+        <div class="lg:col-span-1">
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">
+                        📋 Informacje o użytkowniku
+                    </h3>
+                    <dl class="space-y-3">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Username</dt>
+                            <dd class="text-sm text-gray-900">{{ user.username }}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Email</dt>
+                            <dd class="text-sm text-gray-900">{{ user.email|default:'Nie podano' }}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Ostatnie logowanie</dt>
+                            <dd class="text-sm text-gray-900">
+                                {% if user.last_login %}
+                                    {{ user.last_login|date:"d.m.Y H:i" }}
+                                {% else %}
+                                    Pierwsze logowanie
+                                {% endif %}
+                            </dd>
+                        </div>
+                        {% if tenant %}
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Organizacja</dt>
+                            <dd class="text-sm text-gray-900">{{ tenant.name }}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Schemat</dt>
+                            <dd class="text-sm text-gray-900 font-mono">{{ tenant.schema_name }}</dd>
+                        </div>
+                        {% endif %}
+                    </dl>
+                    
+                    <!-- API Test Button -->
+                    <div class="mt-6">
+                        <button onclick="checkTenantInfo()" class="w-full btn-secondary text-sm">
+                            <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Test API Tenant Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="lg:col-span-2">
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">
+                        🚀 Szybkie akcje
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="#" class="group relative rounded-lg p-6 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 transition duration-200">
+                            <div>
+                                <span class="rounded-lg inline-flex p-3 bg-blue-50 text-blue-600 group-hover:bg-blue-100">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-lg font-medium text-gray-900">
+                                    Dodaj pacjenta
+                                </h4>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Zarejestruj nowego pacjenta w systemie
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="#" class="group relative rounded-lg p-6 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 transition duration-200">
+                            <div>
+                                <span class="rounded-lg inline-flex p-3 bg-green-50 text-green-600 group-hover:bg-green-100">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-lg font-medium text-gray-900">
+                                    Nowa wizyta
+                                </h4>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Utwórz kartę wizyty profilaktycznej
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="#" class="group relative rounded-lg p-6 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 transition duration-200">
+                            <div>
+                                <span class="rounded-lg inline-flex p-3 bg-yellow-50 text-yellow-600 group-hover:bg-yellow-100">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-lg font-medium text-gray-900">
+                                    Raporty
+                                </h4>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Generuj raporty i statystyki
+                                </p>
+                            </div>
+                        </a>
+
+                        <a href="#" class="group relative rounded-lg p-6 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 transition duration-200">
+                            <div>
+                                <span class="rounded-lg inline-flex p-3 bg-purple-50 text-purple-600 group-hover:bg-purple-100">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-lg font-medium text-gray-900">
+                                    Wyszukaj
+                                </h4>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Znajdź pacjentów i dokumenty
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function checkTenantInfo() {
+    fetch('{% url "accounts:tenant_info_api" %}')
+        .then(response => response.json())
+        .then(data => {
+            // Create a nice modal-like alert
+            const info = `
+🏢 Tenant: ${data.tenant_name}
+📂 Schema: ${data.schema_name}
+👤 User: ${data.username || 'Niezalogowany'}
+📧 Full Name: ${data.user_full_name || 'Nie podano'}
+✅ Authenticated: ${data.user_authenticated ? 'Tak' : 'Nie'}
+            `;
+            alert('Informacje o tenancie:\n' + info);
+        })
+        .catch(error => {
+            alert('❌ Błąd API: ' + error);
+        });
+}
+</script>
+{% endblock %}
